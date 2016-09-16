@@ -26,13 +26,14 @@ public class RecipesRVAdapter extends RecyclerView.Adapter<RecipesRVAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_recipes_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
+        holder.mIdView.setTag(mValues.get(position).id);
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
 
@@ -40,9 +41,8 @@ public class RecipesRVAdapter extends RecyclerView.Adapter<RecipesRVAdapter.View
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onRecipesFragmentInteraction(holder.mItem);
+                    v.setTag(holder.mItem);
+                    mListener.onRecipesFragmentInteraction(v);
                 }
             }
         });

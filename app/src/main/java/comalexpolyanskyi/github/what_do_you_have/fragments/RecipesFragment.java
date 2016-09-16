@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import comalexpolyanskyi.github.what_do_you_have.R;
 import comalexpolyanskyi.github.what_do_you_have.adapters.RecipesRVAdapter;
 import comalexpolyanskyi.github.what_do_you_have.dataModels.RecipesModel;
-import comalexpolyanskyi.github.what_do_you_have.dataModels.RecipesModel.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -101,7 +100,7 @@ public class RecipesFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onRecipesFragmentInteraction(DummyItem item);
+        void onRecipesFragmentInteraction(View v);
     }
     private void checkOrientation(){
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {

@@ -11,10 +11,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
+import java.io.Serializable;
 
 import comalexpolyanskyi.github.what_do_you_have.dataModels.IngredientModel;
-import comalexpolyanskyi.github.what_do_you_have.dataModels.RecipesModel;
 import comalexpolyanskyi.github.what_do_you_have.fragments.IngredientsFragment;
 import comalexpolyanskyi.github.what_do_you_have.fragments.RecipesFragment;
 
@@ -62,8 +66,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
             fragment = new RecipesFragment();
+            title = "Recipes";
         } else if (id == R.id.nav_manage) {
             fragment = new IngredientsFragment();
+            title = "I have ... ";
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -88,10 +94,17 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+
     @Override
-    public void onRecipesFragmentInteraction(RecipesModel.DummyItem item) {
-        Intent intent = new Intent(this, ScrollingActivity.class);
-        intent.putExtra("data", item);
-        startActivity(intent);
+    public void onRecipesFragmentInteraction(View v) {
+        Log.e("123", v.findViewById(R.id.id).getTag().toString());
+        ScrollingActivity.launch(this, (ImageView) findViewById(R.id.imageView), (Serializable)v.getTag());
+     //   Intent intent = new Intent(this, ScrollingActivity.class);
+       // intent.putExtra("data", (RecipesModel.DummyItem)v.getTag());
+       // ActivityOptionsCompat options =
+         //       ActivityOptionsCompat.makeSceneTransitionAnimation(
+           //             this, transitionView, EXTRA_IMAGE);
+       // ActivityCompat.startActivity(this, intent, options.toBundle());
     }
 }

@@ -10,4 +10,4 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="comalexpolyanskyi.github.what_do_you_have.fragments.RecipesFragment"
-    tools:listitem="@layout/fragment_recipes" />
+    tools:listitem="@layout/fragment_recipes_item" />
