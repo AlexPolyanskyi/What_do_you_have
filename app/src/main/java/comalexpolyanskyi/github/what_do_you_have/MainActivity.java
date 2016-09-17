@@ -3,6 +3,8 @@ package comalexpolyanskyi.github.what_do_you_have;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import java.io.Serializable;
 import comalexpolyanskyi.github.what_do_you_have.dataModels.IngredientModel;
 import comalexpolyanskyi.github.what_do_you_have.fragments.IngredientsFragment;
 import comalexpolyanskyi.github.what_do_you_have.fragments.RecipesFragment;
+
+import static comalexpolyanskyi.github.what_do_you_have.ScrollingActivity.EXTRA_IMAGE;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, IngredientsFragment.OnListFragmentInteractionListener,
@@ -98,13 +101,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onRecipesFragmentInteraction(View v) {
-        Log.e("123", v.findViewById(R.id.id).getTag().toString());
-        ScrollingActivity.launch(this, (ImageView) findViewById(R.id.imageView), (Serializable)v.getTag());
-     //   Intent intent = new Intent(this, ScrollingActivity.class);
-       // intent.putExtra("data", (RecipesModel.DummyItem)v.getTag());
-       // ActivityOptionsCompat options =
-         //       ActivityOptionsCompat.makeSceneTransitionAnimation(
-           //             this, transitionView, EXTRA_IMAGE);
-       // ActivityCompat.startActivity(this, intent, options.toBundle());
+        ActivityOptionsCompat options =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this, (ImageView) v.findViewById(R.id.imageView), EXTRA_IMAGE);
+        Intent intent = new Intent(this, ScrollingActivity.class);
+        intent.putExtra("data", (Serializable) v.getTag());
+        ActivityCompat.startActivity(this, intent, options.toBundle());
     }
 }

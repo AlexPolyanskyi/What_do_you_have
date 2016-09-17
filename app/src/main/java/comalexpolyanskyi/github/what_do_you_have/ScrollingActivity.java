@@ -1,19 +1,14 @@
 package comalexpolyanskyi.github.what_do_you_have;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-
-import java.io.Serializable;
 
 public class ScrollingActivity extends AppCompatActivity {
     public static final String EXTRA_IMAGE = "DetailActivity:image";
@@ -32,7 +27,7 @@ public class ScrollingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Добаввлено в избранное", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -46,13 +41,5 @@ public class ScrollingActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-    public static void launch(MainActivity activity, ImageView image, Serializable data){
-        ActivityOptionsCompat options =
-               ActivityOptionsCompat.makeSceneTransitionAnimation(
-                     activity, image, EXTRA_IMAGE);
-        Intent intent = new Intent(activity, ScrollingActivity.class);
-        intent.putExtra("data", data);
-        ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
 }
